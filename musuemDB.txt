@@ -1,0 +1,240 @@
+-- 1) Core tables, using ENUM inline and AUTO_INCREMENT
+
+CREATE TABLE `User` (
+  `id`        INT             NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name`      VARCHAR(100)    NOT NULL,
+  `email`     VARCHAR(255)    NOT NULL UNIQUE,
+  `password`  VARCHAR(255)    NOT NULL,
+  `role`      ENUM(
+                'VISITOR',
+                'MEMBER',
+                'RESEARCHER',
+                'VOLUNTEER',
+                'PATRON',
+                'ADMIN'
+              )             NOT NULL DEFAULT 'VISITOR'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Collection` (
+  `id`          INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `title`       VARCHAR(200) NOT NULL,
+  `description` TEXT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Gallery` (
+  `id`     INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name`   VARCHAR(200) NOT NULL,
+  `floor`  VARCHAR(50)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Exhibition` (
+  `id`          INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `title`       VARCHAR(200) NOT NULL,
+  `type`        VARCHAR(100),
+  `start_date`  DATE,
+  `end_date`    DATE,
+  `description` TEXT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Artifact` (
+  `id`             INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name`           VARCHAR(200) NOT NULL,
+  `description`    TEXT,
+  `origin`         VARCHAR(100),
+  `period`         VARCHAR(100),
+  `material`       VARCHAR(100),
+  `image_url`      VARCHAR(2048),
+  `collection_id`  INT,
+  `gallery_id`     INT,
+  `exhibition_id`  INT,
+  FOREIGN KEY (`collection_id`) REFERENCES `Collection`(`id`) ON DELETE SET NULL,
+  FOREIGN KEY (`gallery_id`)    REFERENCES `Gallery`(`id`)    ON DELETE SET NULL,
+  FOREIGN KEY (`exhibition_id`) REFERENCES `Exhibition`(`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Event` (
+  `id`         INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `title`      VARCHAR(200) NOT NULL,
+  `date_time`  DATETIME     NOT NULL,
+  `location`   VARCHAR(200),
+  `capacity`   INT          NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Booking` (
+  `id`           INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `user_id`      INT          NOT NULL,
+  `event_id`     INT          NOT NULL,
+  `booking_date` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status`       VARCHAR(50)  NOT NULL DEFAULT 'PENDING',
+  `participants` INT          NOT NULL DEFAULT 1,
+  FOREIGN KEY (`user_id`)  REFERENCES `User`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`event_id`) REFERENCES `Event`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Ticket` (
+  `id`         INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `booking_id` INT          NOT NULL UNIQUE,
+  `event_id`   INT          NOT NULL,
+  `issue_date` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `price`      DECIMAL(10,2),
+  `type`       VARCHAR(50),
+  FOREIGN KEY (`booking_id`) REFERENCES `Booking`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`event_id`)   REFERENCES `Event`(`id`)   ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `TourGuide` (
+  `id`       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name`     VARCHAR(100) NOT NULL,
+  `language` VARCHAR(100),
+  `bio`      TEXT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Event_TourGuide` (
+  `event_id`     INT NOT NULL,
+  `tourguide_id` INT NOT NULL,
+  PRIMARY KEY (`event_id`,`tourguide_id`),
+  FOREIGN KEY (`event_id`)     REFERENCES `Event`(`id`)     ON DELETE CASCADE,
+  FOREIGN KEY (`tourguide_id`) REFERENCES `TourGuide`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `MembershipPlan` (
+  `id`       INT           NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name`     VARCHAR(100)  NOT NULL,
+  `benefits` TEXT,
+  `price`    DECIMAL(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Membership` (
+  `id`         INT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `user_id`    INT      NOT NULL,
+  `plan_id`    INT      NOT NULL,
+  `start_date` DATE     NOT NULL,
+  `end_date`   DATE,
+  FOREIGN KEY (`user_id`) REFERENCES `User`(`id`)         ON DELETE CASCADE,
+  FOREIGN KEY (`plan_id`) REFERENCES `MembershipPlan`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `DonationProgram` (
+  `id`          INT           NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name`        VARCHAR(200)  NOT NULL,
+  `description` TEXT,
+  `goal_amount` DECIMAL(12,2),
+  `active`      TINYINT(1)    NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Donation` (
+  `id`             INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `user_id`        INT          NOT NULL,
+  `program_id`     INT          NOT NULL,
+  `amount`         DECIMAL(12,2) NOT NULL,
+  `donated_at`     DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `payment_method` VARCHAR(100),
+  FOREIGN KEY (`user_id`)    REFERENCES `User`(`id`)            ON DELETE CASCADE,
+  FOREIGN KEY (`program_id`) REFERENCES `DonationProgram`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Payment` (
+  `id`             INT           NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `user_id`        INT           NOT NULL,
+  `booking_id`     INT,
+  `donation_id`    INT,
+  `membership_id`  INT,
+  `amount`         DECIMAL(12,2) NOT NULL,
+  `payment_date`   DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `method`         VARCHAR(100),
+  `status`         VARCHAR(50)   NOT NULL DEFAULT 'PENDING',
+  FOREIGN KEY (`user_id`)       REFERENCES `User`(`id`)        ON DELETE CASCADE,
+  FOREIGN KEY (`booking_id`)    REFERENCES `Booking`(`id`)     ON DELETE SET NULL,
+  FOREIGN KEY (`donation_id`)   REFERENCES `Donation`(`id`)    ON DELETE SET NULL,
+  FOREIGN KEY (`membership_id`) REFERENCES `Membership`(`id`)  ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Invoice` (
+  `id`         INT           NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `payment_id` INT           NOT NULL UNIQUE,
+  `issue_date` DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `amount`     DECIMAL(12,2) NOT NULL,
+  `status`     VARCHAR(50)   NOT NULL DEFAULT 'UNPAID',
+  FOREIGN KEY (`payment_id`) REFERENCES `Payment`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Email` (
+  `id`        INT        NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `address`   VARCHAR(255) NOT NULL,
+  `sent_date` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Research` (
+  `id`         INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `user_id`    INT          NOT NULL,
+  `topic`      VARCHAR(200) NOT NULL,
+  `summary`    TEXT,
+  `start_date` DATE,
+  `end_date`   DATE,
+  FOREIGN KEY (`user_id`) REFERENCES `User`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Research_Artifact` (
+  `research_id` INT NOT NULL,
+  `artifact_id` INT NOT NULL,
+  PRIMARY KEY (`research_id`,`artifact_id`),
+  FOREIGN KEY (`research_id`) REFERENCES `Research`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`artifact_id`) REFERENCES `Artifact`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `Contact` (
+  `id`      INT        NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `user_id` INT,
+  `name`    VARCHAR(100),
+  `email`   VARCHAR(255),
+  `subject` VARCHAR(200),
+  `message` TEXT,
+  `sent_at` DATETIME   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`user_id`) REFERENCES `User`(`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `SearchQuery` (
+  `id`          INT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `user_id`     INT,
+  `query_text`  TEXT     NOT NULL,
+  `search_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`user_id`) REFERENCES `User`(`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `InfoPage` (
+  `id`      INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `slug`    VARCHAR(200) NOT NULL UNIQUE,
+  `title`   VARCHAR(200) NOT NULL,
+  `content` TEXT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- 1:1 inheritance links back to InfoPage
+ALTER TABLE `Collection`     ADD COLUMN `info_page_id` INT UNIQUE, ADD FOREIGN KEY (`info_page_id`) REFERENCES `InfoPage`(`id`) ON DELETE SET NULL;
+ALTER TABLE `Gallery`        ADD COLUMN `info_page_id` INT UNIQUE, ADD FOREIGN KEY (`info_page_id`) REFERENCES `InfoPage`(`id`) ON DELETE SET NULL;
+ALTER TABLE `Exhibition`     ADD COLUMN `info_page_id` INT UNIQUE, ADD FOREIGN KEY (`info_page_id`) REFERENCES `InfoPage`(`id`) ON DELETE SET NULL;
+ALTER TABLE `Event`          ADD COLUMN `info_page_id` INT UNIQUE, ADD FOREIGN KEY (`info_page_id`) REFERENCES `InfoPage`(`id`) ON DELETE SET NULL;
+ALTER TABLE `MembershipPlan` ADD COLUMN `info_page_id` INT UNIQUE, ADD FOREIGN KEY (`info_page_id`) REFERENCES `InfoPage`(`id`) ON DELETE SET NULL;
+ALTER TABLE `DonationProgram`ADD COLUMN `info_page_id` INT UNIQUE, ADD FOREIGN KEY (`info_page_id`) REFERENCES `InfoPage`(`id`) ON DELETE SET NULL;
+ALTER TABLE `Email`          ADD COLUMN `info_page_id` INT UNIQUE, ADD FOREIGN KEY (`info_page_id`) REFERENCES `InfoPage`(`id`) ON DELETE SET NULL;
