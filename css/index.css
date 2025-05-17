@@ -1,0 +1,173 @@
+/*
+Template Name: ART Museum
+File: Layout CSS
+Author: TemplatesOnWeb
+Author URI: https://www.templateonweb.com/
+Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
+*/
+
+/*********************center_home****************/
+.carousel-caption{
+background:#000000ab;
+padding:270px 140px 0px 140px;
+left:0;
+bottom:0;
+width:100%;
+height:100%;
+color:#fff;
+text-align:left;
+ }
+.center_home img{
+min-height:700px;
+max-height:500px;
+ }
+
+ body{background-color:black;}
+
+/*********************center_home_end****************/
+
+
+/*********************testim****************/
+.testim_1i1ili1 span{
+width:50px;
+height:50px;
+line-height:50px;
+text-align:center;
+ }
+
+.spec_1i span {
+width: 100px;
+height: 100px;
+line-height: 98px;
+}
+/*********************testim_end****************/
+
+
+
+@media screen and (max-width : 767px){
+.carousel-caption{
+padding:15px;
+text-align:center;
+ }
+.center_home img{
+min-height:350px; 
+ }
+.carousel-caption p{
+width:100%!important;
+text-align:left;
+ }
+.carousel-caption h1{
+font-size:20px;
+ }
+.carousel-caption p{
+font-size:14px;
+ }
+.carousel-caption .button{
+padding-left:20px;
+padding-right:20px;
+ }
+.carousel-caption .button_1{
+padding-left:20px;
+padding-right:20px;
+ }
+.wel_2r{
+margin-top:15px; 
+ }
+.wel_2r br{
+display:none; 
+ }
+.theme_1 .button_1{
+padding-left:15px;
+padding-right:15px;
+font-size:13px; 
+ }
+.theme_1 .button_2{
+padding-left:15px;
+padding-right:15px; 
+font-size:13px; 
+ }
+.theme_1 p{
+text-align:left;
+ }
+.spec_1i{
+margin-top:8px;
+margin-bottom:8px; 
+ }
+.subs_o1l h1{
+margin-top:0!important;
+margin-bottom:15px!important; 
+ }
+ }
+
+@media (min-width:576px) and (max-width:767px) {
+.carousel-caption{
+padding:20px;
+ }
+.carousel-caption h1{
+font-size:30px;
+ }
+.carousel-caption p{
+font-size:16px;
+ }
+
+ }
+@media (min-width:768px) and (max-width:991px) {
+.carousel-caption p{
+width:70%!important;
+ }
+.wel_2l img{
+min-height:520px; 
+ }
+.theme_1 br{
+display:none; 
+ }
+.exhib_1li img{
+min-height:320px;
+}
+.exhib_1r{
+padding:10px!important; 
+ }
+.exhib_1rir h6{
+font-size:12px; 
+ }
+.spec_1i h4{
+font-size:13px; 
+ }
+.subs_o1l h1{
+font-size:30px;
+margin-top:20px!important;
+ }
+ }
+
+@media (min-width:992px) and (max-width:1200px) {
+.carousel-caption p{
+width:70%!important;
+ }
+.wel_2l img{
+min-height:520px; 
+ }
+.exhib_1li img{
+min-height:320px;
+}
+.spec_1i h4{
+font-size:18px; 
+ }
+ }
+
+@media (min-width:1201px) and (max-width:1270px) {
+
+ }
+
+.mt-3{color: #fff;}
+
+.col-md-12 h4{color: #fff;}
+
+#testim p,h1,h2,h3{color: black;}
+.text-uppercase{color: antiquewhite;}
+
+.blog_1 img{max-height:280px;}
+
+#gallery_o img{max-height:180px;}
+
+#testim h5,h6{color:#bf9632}
+

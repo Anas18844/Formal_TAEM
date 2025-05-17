@@ -1,0 +1,74 @@
+/*
+Template Name: ART Museum
+File: Layout CSS
+Author: TemplatesOnWeb
+Author URI: https://www.templateonweb.com/
+Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
+*/
+
+/*********************contact***************/
+.account_1lir ul li {
+padding-left: 2px;
+padding-right: 2px;
+}
+.blog_1dt3ir ul li a {
+width: 40px;
+height: 40px;
+line-height: 40px;
+}
+.blog_1dt3ir ul li a:hover {
+background: #d5a738;
+border-color: #d5a738;
+color: #fff;
+}
+
+/*********************contact_end****************/
+
+
+@media screen and (max-width : 767px){
+.account_1l{
+margin-top:8px;
+margin-bottom:8px;
+ }
+.account_1l h3{
+text-align:center; 
+ }
+.account_1l h6{
+text-align:center; 
+ }
+.account_1lir {
+text-align:center!important; 
+ }
+.account_1lir  p{
+text-align:left; 
+ }
+.blog_1dt3ir p{
+text-align:center;  
+ }
+.account_1lir{
+margin-top:10px; 
+ }
+
+ }
+
+@media (min-width:576px) and (max-width:767px) {
+
+ }
+@media (min-width:768px) and (max-width:991px) {
+.account_1lil .button{
+font-size:12px;
+padding:10px!important; 
+ }
+ }
+
+@media (min-width:992px) and (max-width:1200px) {
+.account_1lil .button{
+font-size:13px;
+padding:15px!important; 
+ }
+ }
+
+@media (min-width:1201px) and (max-width:1270px) {
+
+ }
+

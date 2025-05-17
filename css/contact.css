@@ -1,0 +1,60 @@
+/*
+Template Name: ART Museum
+File: Layout CSS
+Author: TemplatesOnWeb
+Author URI: https://www.templateonweb.com/
+Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
+*/
+
+/*********************contact***************/
+#contact{
+padding-top:100px; 
+ }
+.contact_1im2 span{
+width:90px;
+height:90px;
+line-height:90px; 
+ }
+.contact_1im2{
+top:-45px; 
+ }
+/*********************contact_end****************/
+
+
+@media screen and (max-width : 767px){
+.contact_1im2 {
+position:static!important;
+margin-bottom:10px;
+margin-top:10px;
+ }
+#contact {
+padding-top:40px;
+}
+.contact_2 {
+margin-top:30px!important; 
+ }
+.contact_2lil{
+margin-top:15px; 
+ }
+.contact_2l{
+margin-bottom:15px;  
+ }
+ }
+
+@media (min-width:576px) and (max-width:767px) {
+
+ }
+@media (min-width:768px) and (max-width:991px) {
+.contact_1im1  h6{
+font-size:13px; 
+ }
+ }
+
+@media (min-width:992px) and (max-width:1200px) {
+
+ }
+
+@media (min-width:1201px) and (max-width:1270px) {
+
+ }
+

@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Forms | TAEM</title>
+    <link rel="stylesheet" href="css/membershipForms.css" class="">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">TAEM MUSEUM</div>
+            <h1>Membership Application</h1>
+            <p>Join us to unlock exclusive benefits and support our collection</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="tab-container">
+            <ul class="tabs">
+                <li class="tab active" data-tab="individual">Individual Membership</li>
+                <li class="tab" data-tab="family">Family Membership</li>
+                <li class="tab" data-tab="patron">Patron Membership</li>
+            </ul>
+
+            <!-- Individual Membership Form -->
+            <div id="individual" class="tab-content active">
+                <div class="membership-details">
+                    <h2>Individual Membership</h2>
+                    <div class="price">£80 per year</div>
+                    <ul class="benefits">
+                        <li>Unlimited free admission for one person</li>
+                        <li>Priority access to special exhibitions</li>
+                        <li>10% discount at museum shop</li>
+                        <li>Subscription to quarterly newsletter</li>
+                        <li>Special member events</li>
+                        <li>2 guest passes annually</li>
+                    </ul>
+                </div>
+
+                <form id="individual-form" class="membership-form">
+                    <h3 class="section-title">Personal Details</h3>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="ind-title">Title</label>
+                                <select id="ind-title" name="title" required>
+                                    <option value="">Select</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Ms">Ms</option>
+                                    <option value="Dr">Dr</option>
+                                    <option value="Prof">Prof</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <div class="error-message" id="ind-title-error">Please select a title</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="ind-first-name">First Name</label>
+                                <input type="text" id="ind-first-name" name="firstName" required>
+                                <div class="error-message" id="ind-first-name-error">Please enter your first name</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="ind-last-name">Last Name</label>
+                                <input type="text" id="ind-last-name" name="lastName" required>
+                                <div class="error-message" id="ind-last-name-error">Please enter your last name</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="ind-dob">Date of Birth</label>
+                                <input type="date" id="ind-dob" name="dateOfBirth" required>
+                                <div class="error-message" id="ind-dob-error">Please enter your date of birth</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="ind-email">Email Address</label>
+                                <input type="email" id="ind-email" name="email" required>
+                                <div class="error-message" id="ind-email-error">Please enter a valid email address</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="ind-phone">Phone Number</label>
+                                <input type="tel" id="ind-phone" name="phone" required>
+                                <div class="error-message" id="ind-phone-error">Please enter a valid phone number</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title">Address</h3>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="ind-address1">Address Line 1</label>
+                                <input type="text" id="ind-address1" name="addressLine1" required>
+                                <div class="error-message" id="ind-address1-error">Please enter your address</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="ind-address2">Address Line 2</label>
+                                <input type="text" id="ind-address2" name="addressLine2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="ind-city">City</label>
+                                <input type="text" id="ind-city" name="city" required>
+                                <div class="error-message" id="ind-city-error">Please enter your city</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="ind-postcode">Postcode</label>
+                                <input type="text" id="ind-postcode" name="postcode" required>
+                                <div class="error-message" id="ind-postcode-error">Please enter a valid postcode</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title">Payment Information</h3>
+
+                    <div class="form-group">
+                        <label for="ind-payment-method">Payment Method</label>
+                        <select id="ind-payment-method" name="paymentMethod" required>
+                            <option value="">Select</option>
+                            <option value="directDebit">Direct Debit</option>
+                            <option value="creditCard">Credit/Debit Card</option>
+                        </select>
+                        <div class="error-message" id="ind-payment-method-error">Please select a payment method</div>
+                    </div>
+
+                    <div id="ind-card-details" class="payment-info">
+                        <div class="form-group">
+                            <label for="ind-card-name">Name on Card</label>
+                            <input type="text" id="ind-card-name" name="cardName">
+                            <div class="error-message" id="ind-card-name-error">Please enter the name on your card</div>
+                        </div>
+
+                        <div class="card-row">
+                            <div class="form-group card-number">
+                                <label for="ind-card-number">Card Number</label>
+                                <input type="text" id="ind-card-number" name="cardNumber" maxlength="19"
+                                    placeholder="XXXX XXXX XXXX XXXX">
+                                <div class="error-message" id="ind-card-number-error">Please enter a valid card number
+                                </div>
+                            </div>
+
+                            <div class="form-group card-expiry">
+                                <label for="ind-card-expiry">Expiry Date</label>
+                                <input type="text" id="ind-card-expiry" name="cardExpiry" placeholder="MM/YY"
+                                    maxlength="5">
+                                <div class="error-message" id="ind-card-expiry-error">Please enter a valid expiry date
+                                </div>
+                            </div>
+
+                            <div class="form-group card-cvc">
+                                <label for="ind-card-cvc">CVC</label>
+                                <input type="text" id="ind-card-cvc" name="cardCvc" maxlength="3" placeholder="123">
+                                <div class="error-message" id="ind-card-cvc-error">Please enter a valid CVC</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="ind-terms" name="terms" required>
+                            I agree to the terms and conditions
+                        </label>
+                        <div class="error-message" id="ind-terms-error">You must agree to the terms and conditions</div>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="ind-newsletter" name="newsletter">
+                            I would like to receive newsletters and updates from the British Museum
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Complete Application</button>
+                    <div class="success-message" id="ind-success">Thank you for your application! We'll be in touch
+                        shortly with your membership details.</div>
+                </form>
+            </div>
+
+            <!-- Family Membership Form -->
+            <div id="family" class="tab-content">
+                <div class="membership-details">
+                    <h2>Family Membership</h2>
+                    <div class="price">£140 per year</div>
+                    <ul class="benefits">
+                        <li>Unlimited free admission for two adults</li>
+                        <li>Free admission for up to 4 children under 18</li>
+                        <li>Priority access to special exhibitions</li>
+                        <li>15% discount at museum shop</li>
+                        <li>Subscription to quarterly newsletter</li>
+                        <li>Special member events</li>
+                        <li>4 guest passes annually</li>
+                        <li>Free tickets to family workshops</li>
+                    </ul>
+                </div>
+
+                <form id="family-form" class="membership-form">
+                    <h3 class="section-title">Primary Member Details</h3>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="fam-title">Title</label>
+                                <select id="fam-title" name="title" required>
+                                    <option value="">Select</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Ms">Ms</option>
+                                    <option value="Dr">Dr</option>
+                                    <option value="Prof">Prof</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <div class="error-message" id="fam-title-error">Please select a title</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="fam-first-name">First Name</label>
+                                <input type="text" id="fam-first-name" name="firstName" required>
+                                <div class="error-message" id="fam-first-name-error">Please enter your first name</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="fam-last-name">Last Name</label>
+                                <input type="text" id="fam-last-name" name="lastName" required>
+                                <div class="error-message" id="fam-last-name-error">Please enter your last name</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="fam-dob">Date of Birth</label>
+                                <input type="date" id="fam-dob" name="dateOfBirth" required>
+                                <div class="error-message" id="fam-dob-error">Please enter your date of birth</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="fam-email">Email Address</label>
+                                <input type="email" id="fam-email" name="email" required>
+                                <div class="error-message" id="fam-email-error">Please enter a valid email address</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="fam-phone">Phone Number</label>
+                                <input type="tel" id="fam-phone" name="phone" required>
+                                <div class="error-message" id="fam-phone-error">Please enter a valid phone number</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title">Additional Family Members</h3>
+                    <p>Please add up to 1 additional adult and up to 4 children (under 16)</p>
+
+                    <div class="additional-members" id="adult-members">
+                        <h4>Additional Adult</h4>
+                        <div class="member-entry">
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="additional-adult-title">Title</label>
+                                        <select id="additional-adult-title" name="additionalAdultTitle">
+                                            <option value="">Select</option>
+                                            <option value="Mr">Mr</option>
+                                            <option value="Mrs">Mrs</option>
+                                            <option value="Ms">Ms</option>
+                                            <option value="Dr">Dr</option>
+                                            <option value="Prof">Prof</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="additional-adult-first-name">First Name</label>
+                                        <input type="text" id="additional-adult-first-name"
+                                            name="additionalAdultFirstName">
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="additional-adult-last-name">Last Name</label>
+                                        <input type="text" id="additional-adult-last-name"
+                                            name="additionalAdultLastName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="additional-adult-dob">Date of Birth</label>
+                                        <input type="date" id="additional-adult-dob" name="additionalAdultDob">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="additional-members" id="child-members">
+                        <h4>Children (Under 16)</h4>
+                        <div id="children-container">
+                            <div class="member-entry">
+                                <div class="form-row">
+                                    <div class="form-col">
+                                        <div class="form-group">
+                                            <label for="child1-first-name">First Name</label>
+                                            <input type="text" id="child1-first-name" name="child1FirstName">
+                                        </div>
+                                    </div>
+                                    <div class="form-col">
+                                        <div class="form-group">
+                                            <label for="child1-last-name">Last Name</label>
+                                            <input type="text" id="child1-last-name" name="child1LastName">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-col">
+                                        <div class="form-group">
+                                            <label for="child1-dob">Date of Birth</label>
+                                            <input type="date" id="child1-dob" name="child1Dob">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" id="add-child" class="add-member-btn" data-count="1">Add Child</button>
+                    </div>
+
+                    <h3 class="section-title">Address</h3>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="fam-address1">Address Line 1</label>
+                                <input type="text" id="fam-address1" name="addressLine1" required>
+                                <div class="error-message" id="fam-address1-error">Please enter your address</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="fam-address2">Address Line 2</label>
+                                <input type="text" id="fam-address2" name="addressLine2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="fam-city">City</label>
+                                <input type="text" id="fam-city" name="city" required>
+                                <div class="error-message" id="fam-city-error">Please enter your city</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="fam-postcode">Postcode</label>
+                                <input type="text" id="fam-postcode" name="postcode" required>
+                                <div class="error-message" id="fam-postcode-error">Please enter a valid postcode</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title">Payment Information</h3>
+
+                    <div class="form-group">
+                        <label for="fam-payment-method">Payment Method</label>
+                        <select id="fam-payment-method" name="paymentMethod" required>
+                            <option value="">Select</option>
+                            <option value="directDebit">Direct Debit</option>
+                            <option value="creditCard">Credit/Debit Card</option>
+                        </select>
+                        <div class="error-message" id="fam-payment-method-error">Please select a payment method</div>
+                    </div>
+
+                    <div id="fam-card-details" class="payment-info">
+                        <div class="form-group">
+                            <label for="fam-card-name">Name on Card</label>
+                            <input type="text" id="fam-card-name" name="cardName">
+                            <div class="error-message" id="fam-card-name-error">Please enter the name on your card</div>
+                        </div>
+
+                        <div class="card-row">
+                            <div class="form-group card-number">
+                                <label for="fam-card-number">Card Number</label>
+                                <input type="text" id="fam-card-number" name="cardNumber" maxlength="19"
+                                    placeholder="XXXX XXXX XXXX XXXX">
+                                <div class="error-message" id="fam-card-number-error">Please enter a valid card number
+                                </div>
+                            </div>
+
+                            <div class="form-group card-expiry">
+                                <label for="fam-card-expiry">Expiry Date</label>
+                                <input type="text" id="fam-card-expiry" name="cardExpiry" placeholder="MM/YY"
+                                    maxlength="5">
+                                <div class="error-message" id="fam-card-expiry-error">Please enter a valid expiry date
+                                </div>
+                            </div>
+
+                            <div class="form-group card-cvc">
+                                <label for="fam-card-cvc">CVC</label>
+                                <input type="text" id="fam-card-cvc" name="cardCvc" maxlength="3" placeholder="123">
+                                <div class="error-message" id="fam-card-cvc-error">Please enter a valid CVC</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="fam-terms" name="terms" required>
+                            I agree to the terms and conditions
+                        </label>
+                        <div class="error-message" id="fam-terms-error">You must agree to the terms and conditions</div>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="fam-newsletter" name="newsletter">
+                            I would like to receive newsletters and updates from the British Museum
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Complete Application</button>
+                    <div class="success-message" id="fam-success">Thank you for your application! We'll be in touch
+                        shortly with your family membership details.</div>
+                </form>
+            </div>
+
+            <!-- Patron Membership Form -->
+            <div id="patron" class="tab-content">
+                <div class="membership-details">
+                    <h2>Patron Membership</h2>
+                    <div class="price">£300 per year</div>
+                    <ul class="benefits">
+                        <li>All Family membership benefits</li>
+                        <li>VIP invitations to exhibition openings</li>
+                        <li>25% discount at museum shop</li>
+                        <li>Private curator-led tours</li>
+                        <li>Recognition in annual report</li>
+                        <li>8 guest passes annually</li>
+                        <li>Access to exclusive patron events</li>
+                        <li>Behind-the-scenes access to conservation</li>
+                    </ul>
+                </div>
+
+                <form id="patron-form" class="membership-form">
+                    <h3 class="section-title">Personal Details</h3>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="pat-title">Title</label>
+                                <select id="pat-title" name="title" required>
+                                    <option value="">Select</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Ms">Ms</option>
+                                    <option value="Dr">Dr</option>
+                                    <option value="Prof">Prof</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <div class="error-message" id="pat-title-error">Please select a title</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="pat-first-name">First Name</label>
+                                <input type="text" id="pat-first-name" name="firstName" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="pat-last-name">Last Name</label>
+                                <input type="text" id="pat-last-name" name="lastName" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="pat-email">Email</label>
+                                <input type="email" id="pat-email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="pat-phone">Phone Number</label>
+                                <input type="tel" id="pat-phone" name="phone" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title">Address</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pat-address">Street Address</label>
+                            <input type="text" id="pat-address" name="address" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="pat-city">City</label>
+                                <input type="text" id="pat-city" name="city" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="pat-postcode">Postcode</label>
+                                <input type="text" id="pat-postcode" name="postcode" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="pat-country">Country</label>
+                                <input type="text" id="pat-country" name="country" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title">Payment Information</h3>
+
+                    <div class="form-group">
+                        <label for="fam-payment-method">Payment Method</label>
+                        <select id="fam-payment-method" name="paymentMethod" required>
+                            <option value="">Select</option>
+                            <option value="directDebit">Direct Debit</option>
+                            <option value="creditCard">Credit/Debit Card</option>
+                        </select>
+                        <div class="error-message" id="fam-payment-method-error">Please select a payment method</div>
+                    </div>
+
+                    <div id="fam-card-details" class="payment-info">
+                        <div class="form-group">
+                            <label for="fam-card-name">Name on Card</label>
+                            <input type="text" id="fam-card-name" name="cardName">
+                            <div class="error-message" id="fam-card-name-error">Please enter the name on your card</div>
+                        </div>
+
+                        <div class="card-row">
+                            <div class="form-group card-number">
+                                <label for="fam-card-number">Card Number</label>
+                                <input type="text" id="fam-card-number" name="cardNumber" maxlength="19"
+                                    placeholder="XXXX XXXX XXXX XXXX">
+                                <div class="error-message" id="fam-card-number-error">Please enter a valid card number
+                                </div>
+                            </div>
+
+                            <div class="form-group card-expiry">
+                                <label for="fam-card-expiry">Expiry Date</label>
+                                <input type="text" id="fam-card-expiry" name="cardExpiry" placeholder="MM/YY"
+                                    maxlength="5">
+                                <div class="error-message" id="fam-card-expiry-error">Please enter a valid expiry date
+                                </div>
+                            </div>
+
+                            <div class="form-group card-cvc">
+                                <label for="fam-card-cvc">CVC</label>
+                                <input type="text" id="fam-card-cvc" name="cardCvc" maxlength="3" placeholder="123">
+                                <div class="error-message" id="fam-card-cvc-error">Please enter a valid CVC</div>
+                            </div>
+                        </div>  
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="submit-button">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                const target = document.getElementById(tab.dataset.tab);
+                if (target) target.classList.add('active');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the add child button
+            const addChildButton = document.getElementById('add-child');
+
+            if (addChildButton) {
+                // Add click event listener to the button
+                addChildButton.addEventListener('click', function () {
+                    // Get current child count from the button's data attribute
+                    let childCount = parseInt(addChildButton.getAttribute('data-count')) || 1;
+
+                    // Maximum number of children allowed (as per the benefits: up to 4 children)
+                    const maxChildren = 4;
+
+                    // Check if we can add more children
+                    if (childCount < maxChildren) {
+                        // Increment the child count
+                        childCount++;
+
+                        // Update the button's data-count attribute
+                        addChildButton.setAttribute('data-count', childCount);
+
+                        // Create a new child entry
+                        const newChildEntry = document.createElement('div');
+                        newChildEntry.className = 'member-entry';
+                        newChildEntry.innerHTML = `
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="child${childCount}-first-name">First Name</label>
+                                <input type="text" id="child${childCount}-first-name" name="child${childCount}FirstName">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="child${childCount}-last-name">Last Name</label>
+                                <input type="text" id="child${childCount}-last-name" name="child${childCount}LastName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="child${childCount}-dob">Date of Birth</label>
+                                <input type="date" id="child${childCount}-dob" name="child${childCount}Dob">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <button type="button" class="remove-child-btn" data-child-id="${childCount}">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                        // Append the new child entry to the children container
+                        const childrenContainer = document.getElementById('children-container');
+                        childrenContainer.appendChild(newChildEntry);
+
+                        // Add remove button event listener
+                        const removeButton = newChildEntry.querySelector('.remove-child-btn');
+                        if (removeButton) {
+                            removeButton.addEventListener('click', function () {
+                                newChildEntry.remove();
+                                // Optionally adjust the counter, but it's simpler to keep it as is
+                                // so that the form field names remain consistent
+
+                                // Make sure the add button is visible if we're below the max
+                                addChildButton.style.display = 'block';
+                            });
+                        }
+
+                        // Hide add button if we've reached the maximum
+                        if (childCount >= maxChildren) {
+                            addChildButton.style.display = 'none';
+                        }
+                    }
+                });
+            }
+
+            // Also need to handle form submission to ensure validation
+            const familyForm = document.getElementById('family-form');
+            if (familyForm) {
+                familyForm.addEventListener('submit', function (event) {
+                    // Prevent the default form submission
+                    event.preventDefault();
+
+                    // Check for validation (could be expanded)
+                    let isValid = validateFamilyForm();
+
+                    if (isValid) {
+                        // Submit the form or show success message
+                        document.getElementById('fam-success').style.display = 'block';
+                        familyForm.reset();
+                        // For a real implementation, you would submit the form data to the server here
+                    }
+                });
+            }
+
+            // Basic validation function - could be expanded
+            function validateFamilyForm() {
+                // Reset error messages
+                const errorMessages = document.querySelectorAll('.error-message');
+                errorMessages.forEach(function (errorMessage) {
+                    errorMessage.style.display = 'none';
+                });
+
+                let isValid = true;
+
+                // Check required fields
+                const requiredFields = familyForm.querySelectorAll('[required]');
+                requiredFields.forEach(function (field) {
+                    if (!field.value) {
+                        isValid = false;
+                        const errorId = field.id + '-error';
+                        const errorElement = document.getElementById(errorId);
+                        if (errorElement) {
+                            errorElement.style.display = 'block';
+                        }
+                    }
+                });
+
+                // Additional validation for specific fields could be added here
+                // For example, email format, postcode format, etc.
+
+                return isValid;
+            }
+
+            // Initialize payment method switching
+            const paymentMethodSelect = document.getElementById('fam-payment-method');
+            const cardDetailsSection = document.getElementById('fam-card-details');
+
+            if (paymentMethodSelect && cardDetailsSection) {
+                paymentMethodSelect.addEventListener('change', function () {
+                    if (this.value === 'creditCard') {
+                        cardDetailsSection.style.display = 'block';
+                    } else {
+                        cardDetailsSection.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
