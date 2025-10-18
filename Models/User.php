@@ -26,39 +26,39 @@ class User  extends BaseModel{
     public $password;
     public UserRole $role;
    
-    public function register($name, $email, $password) {
-        
+    public function register($name, $email, $password, $role = 'visitor') {
+
         if(empty($name)||empty($email)||empty($password))
         {
             return false;
         }
 
-        
+
            $query = $this->db->prepare("SELECT * FROM user WHERE email = :email");
            $query->bindParam(':email', $email);
            $query->execute();
-           if ($query->rowCount() > 0) 
+           if ($query->rowCount() > 0)
            {
             return false;
            }
 
            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-           $query = $this->db->prepare("INSERT INTO user (name, email, password, role))
+           $query = $this->db->prepare("INSERT INTO user (name, email, password, role)
            VALUES (:name, :email, :password, :role)");
 
            $query->bindParam(':name', $name);
            $query->bindParam(':email', $email);
            $query->bindParam(':password', $hashedPassword);
-           $query->bindParam(':role', $role );
+           $query->bindParam(':role', $role);
 
            if ($query->execute()) {
 
-            return true; 
+            return true;
 
         } else {
 
-            
+
             return false;
         }
     }
